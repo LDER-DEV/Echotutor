@@ -34,7 +34,8 @@ export function QuickActions({ dueFlashcards }: QuickActionsProps) {
           className="w-full justify-start bg-transparent"
           variant="outline"
           onClick={() => {
-            document.querySelector('input[type="file"]')?.click()
+            const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
+            fileInput?.click()
           }}
         >
           <Upload className="w-4 h-4 mr-2" />

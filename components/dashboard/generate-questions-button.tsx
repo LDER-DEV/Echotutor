@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast"
 interface GenerateQuestionsButtonProps {
   materialId: string
   content: string
-  onQuestionsGenerated: (questions: any[]) => void
+  onQuestionsGenerated?: (questions: any[]) => void
 }
 
 export function GenerateQuestionsButton({ materialId, content, onQuestionsGenerated }: GenerateQuestionsButtonProps) {
@@ -42,7 +42,12 @@ export function GenerateQuestionsButton({ materialId, content, onQuestionsGenera
         description: `Successfully created ${data.count} study questions.`,
       })
 
-      onQuestionsGenerated(data.questions)
+      if (onQuestionsGenerated) {
+        onQuestionsGenerated(data.questions)
+      } else {
+        // Refresh the page if no callback is provided
+        window.location.reload()
+      }
     } catch (error) {
       console.error("Error generating questions:", error)
       toast({

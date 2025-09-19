@@ -12,7 +12,7 @@ interface LearnPageProps {
 }
 
 export default async function LearnPage({ params }: LearnPageProps) {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -85,7 +85,6 @@ export default async function LearnPage({ params }: LearnPageProps) {
               <GenerateQuestionsButton
                 materialId={params.materialId}
                 content={material.content}
-                onQuestionsGenerated={() => window.location.reload()}
               />
             </CardContent>
           </Card>
